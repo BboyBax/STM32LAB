@@ -91,22 +91,32 @@ int main(void)
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
-  int LED_STATE = 2;
+  int LED_STATE_ON = 2;
+  int LED_STATE_OFF = 2;
+  int LED_STATE = 1;
   HAL_GPIO_WritePin(LED_RED_GPIO_Port, LED_RED_Pin, SET);
   HAL_GPIO_WritePin(LED_YELLOW_GPIO_Port, LED_YELLOW_Pin, SET);
   while (1)
   {
 	  HAL_GPIO_TogglePin(LED_BLINK_GPIO_Port, LED_BLINK_Pin);
-	  if (LED_STATE <= 0) {
-		  HAL_GPIO_WritePin(LED_RED_GPIO_Port, LED_RED_Pin, RESET);
-		  HAL_GPIO_WritePin(LED_YELLOW_GPIO_Port, LED_YELLOW_Pin, SET);
-		  LED_STATE = 2;
-	  }
-	  else {
+	  if (LED_STATE == 0) {
 		  HAL_GPIO_WritePin(LED_RED_GPIO_Port, LED_RED_Pin, SET);
 		  HAL_GPIO_WritePin(LED_YELLOW_GPIO_Port, LED_YELLOW_Pin, RESET);
+		  LED_STATE_ON = LED_STATE_ON - 1;
+		  if (LED_STATE_ON == 0) {
+			  LED_STATE = 1;
+			  LED_STATE_ON = 2;
+		  }
 	  }
-	  LED_STATE--;
+	  else {
+		  HAL_GPIO_WritePin(LED_RED_GPIO_Port, LED_RED_Pin, RESET);
+		  HAL_GPIO_WritePin(LED_YELLOW_GPIO_Port, LED_YELLOW_Pin, SET);
+		  LED_STATE_OFF = LED_STATE_OFF - 1;
+		  if (LED_STATE_OFF == 0){
+			  LED_STATE = 0;
+			  LED_STATE_OFF = 2;
+		  }
+	  }
 	  HAL_Delay(1000);
     /* USER CODE END WHILE */
 
