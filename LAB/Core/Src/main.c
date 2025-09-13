@@ -92,6 +92,7 @@ int main(void)
   // hello world
   while (1)
   {
+	  // HI
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
