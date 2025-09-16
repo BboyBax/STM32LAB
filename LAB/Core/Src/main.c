@@ -400,6 +400,8 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim){
 				index_led = 0;
 				break;
 			}
+			default:
+				break;
 		}
 	}
 }
