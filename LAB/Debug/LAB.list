@@ -834,6 +834,7 @@ int main(void)
  80006a6:	f000 f997 	bl	80009d8 <setTimer3>
   while (1)
   {
+	  // LED_BLINK and DOT
 	  if (timer1_flag == 1) {
  80006aa:	4b3d      	ldr	r3, [pc, #244]	; (80007a0 <main+0x15c>)
  80006ac:	681b      	ldr	r3, [r3, #0]
@@ -851,6 +852,7 @@ int main(void)
  80006c2:	4836      	ldr	r0, [pc, #216]	; (800079c <main+0x158>)
  80006c4:	f000 fd94 	bl	80011f0 <HAL_GPIO_TogglePin>
 	  }
+	  // update hour and minute
 	  if (timer2_flag == 1) {
  80006c8:	4b36      	ldr	r3, [pc, #216]	; (80007a4 <main+0x160>)
  80006ca:	681b      	ldr	r3, [r3, #0]
@@ -900,6 +902,7 @@ int main(void)
  8000708:	68f8      	ldr	r0, [r7, #12]
  800070a:	f7ff ff4b 	bl	80005a4 <updateClockBuffer>
 	  }
+	  // display hour and minute
 	  if (timer3_flag == 1) {
  800070e:	4b26      	ldr	r3, [pc, #152]	; (80007a8 <main+0x164>)
  8000710:	681b      	ldr	r3, [r3, #0]

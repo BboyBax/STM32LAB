@@ -263,11 +263,13 @@ int main(void)
 	setTimer3(3);
   while (1)
   {
+	  // LED_BLINK and DOT
 	  if (timer1_flag == 1) {
 		  setTimer1(100);
 		  HAL_GPIO_TogglePin(LED_BLINK_GPIO_Port, LED_BLINK_Pin);
 		  HAL_GPIO_TogglePin(DOT_GPIO_Port, DOT_Pin);
 	  }
+	  // update hour and minute
 	  if (timer2_flag == 1) {
 		  setTimer2(100);
 		  second++;
@@ -284,6 +286,7 @@ int main(void)
 		  }
 		  updateClockBuffer(hour, minute);
 	  }
+	  // display hour and minute
 	  if (timer3_flag == 1) {
 		  setTimer3(25);
 		  switch (index_led){
