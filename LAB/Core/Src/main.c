@@ -227,14 +227,24 @@ GPIO_TypeDef* ROW_PORT[8] = {ROW0_GPIO_Port,ROW1_GPIO_Port,ROW2_GPIO_Port,ROW3_G
 uint16_t      ROW_PIN[8]  = {ROW0_Pin,ROW1_Pin,ROW2_Pin,ROW3_Pin
 							,ROW4_Pin,ROW5_Pin,ROW6_Pin,ROW7_Pin};
 
+
+
 const int MAX_LED_MATRIX = 8;
 int index_led_matrix = 0;
-uint8_t matrix_buffer[8] = {0x18, 0x3C, 0x66, 0x66, 0x7E, 0x7E, 0x66, 0x66};
+const uint8_t matrix_buffer[8] = {0x18, 0x3C, 0x66, 0x66, 0x7E, 0x7E, 0x66, 0x66};
+
+void clear_Col_gate(){
+	for (int i = 0; i < MAX_LED_MATRIX; i++){
+		HAL_GPIO_WritePin(COL_PORT[i], COL_PIN[i], RESET);
+	}
+	return;
+}
 
 void updateLEDMatrix(int index){
 	 switch (index){
 	 	 case 0:
-	 		HAL_GPIO_WritePin(COL_PORT[0], COL_PIN[0], SET);
+	 		 clear_Col_gate();
+	 		 HAL_GPIO_WritePin(COL_PORT[index], COL_PIN[index], SET);
 	 		 for (int i = 0; i < MAX_LED_MATRIX; i++){
 	 			 if (matrix_buffer[index] & (1<<i)) {
 			 		 HAL_GPIO_WritePin(ROW_PORT[i], ROW_PIN[i], SET);
@@ -246,6 +256,8 @@ void updateLEDMatrix(int index){
 	 		 index++;
 		 break;
 		 case 1:
+	 		 clear_Col_gate();
+	 		 HAL_GPIO_WritePin(COL_PORT[index], COL_PIN[index], SET);
 	 		 for (int i = 0; i < MAX_LED_MATRIX; i++){
 	 			 if (matrix_buffer[index] & 1<<i) {
 			 		 HAL_GPIO_WritePin(ROW_PORT[i], ROW_PIN[i], SET);
@@ -257,6 +269,8 @@ void updateLEDMatrix(int index){
 	 		 index++;
 		 break;
 		 case 2:
+	 		 clear_Col_gate();
+	 		 HAL_GPIO_WritePin(COL_PORT[index], COL_PIN[index], SET);
 	 		 for (int i = 0; i < MAX_LED_MATRIX; i++){
 	 			 if (matrix_buffer[index] & 1<<i) {
 			 		 HAL_GPIO_WritePin(ROW_PORT[i], ROW_PIN[i], SET);
@@ -268,6 +282,8 @@ void updateLEDMatrix(int index){
 	 		 index++;
 		 break;
 		 case 3:
+	 		 clear_Col_gate();
+	 		 HAL_GPIO_WritePin(COL_PORT[index], COL_PIN[index], SET);
 	 		 for (int i = 0; i < MAX_LED_MATRIX; i++){
 	 			 if (matrix_buffer[index] & 1<<i) {
 			 		 HAL_GPIO_WritePin(ROW_PORT[i], ROW_PIN[i], SET);
@@ -279,6 +295,8 @@ void updateLEDMatrix(int index){
 	 		 index++;
 		 break;
 		 case 4:
+	 		 clear_Col_gate();
+	 		 HAL_GPIO_WritePin(COL_PORT[index], COL_PIN[index], SET);
 	 		 for (int i = 0; i < MAX_LED_MATRIX; i++){
 	 			 if (matrix_buffer[index] & 1<<i) {
 			 		 HAL_GPIO_WritePin(ROW_PORT[i], ROW_PIN[i], SET);
@@ -290,6 +308,8 @@ void updateLEDMatrix(int index){
 	 		 index++;
 		 break;
 		 case 5:
+	 		 clear_Col_gate();
+	 		 HAL_GPIO_WritePin(COL_PORT[index], COL_PIN[index], SET);
 	 		 for (int i = 0; i < MAX_LED_MATRIX; i++){
 	 			 if (matrix_buffer[index] & 1<<i) {
 			 		 HAL_GPIO_WritePin(ROW_PORT[i], ROW_PIN[i], SET);
@@ -301,6 +321,8 @@ void updateLEDMatrix(int index){
 	 		 index++;
 		 break;
 		 case 6:
+	 		 clear_Col_gate();
+	 		 HAL_GPIO_WritePin(COL_PORT[index], COL_PIN[index], SET);
 	 		 for (int i = 0; i < MAX_LED_MATRIX; i++){
 	 			 if (matrix_buffer[index] & 1<<i) {
 			 		 HAL_GPIO_WritePin(ROW_PORT[i], ROW_PIN[i], SET);
@@ -312,6 +334,8 @@ void updateLEDMatrix(int index){
 	 		 index++;
 		 break;
 		 case 7:
+	 		 clear_Col_gate();
+	 		 HAL_GPIO_WritePin(COL_PORT[index], COL_PIN[index], SET);
 	 		 for (int i = 0; i < MAX_LED_MATRIX; i++){
 	 			 if (matrix_buffer[index] & 1<<i) {
 			 		 HAL_GPIO_WritePin(ROW_PORT[i], ROW_PIN[i], SET);
@@ -375,14 +399,6 @@ int main(void)
   	setTimer3(4);
   	setTimer4(10);
   	int index = 0;
-//  	HAL_GPIO_WritePin(COL_PORT[0], COL_PIN[0], SET);
-//  	HAL_GPIO_WritePin(COL_PORT[1], COL_PIN[1], SET);
-//  	HAL_GPIO_WritePin(COL_PORT[2], COL_PIN[2], SET);
-//  	HAL_GPIO_WritePin(COL_PORT[3], COL_PIN[3], SET);
-//  	HAL_GPIO_WritePin(COL_PORT[4], COL_PIN[4], SET);
-//  	HAL_GPIO_WritePin(COL_PORT[5], COL_PIN[5], SET);
-//  	HAL_GPIO_WritePin(COL_PORT[6], COL_PIN[6], SET);
-//  	HAL_GPIO_WritePin(COL_PORT[7], COL_PIN[7], SET);
   	while (1)
     {
   	  // LED_BLINK and DOT
@@ -434,8 +450,11 @@ int main(void)
   	  }
   	  // display matrix 8x8 led
   	  if (timer4_flag == 1){
-  		  setTimer4(10);
+  		  setTimer4(1);
   		  updateLEDMatrix(index++);
+  		if (index >= MAX_LED_MATRIX) {
+  			index = 0;
+  		}
   	  }
 
     /* USER CODE END WHILE */
