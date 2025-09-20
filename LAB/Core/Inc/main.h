@@ -66,8 +66,8 @@ void Error_Handler(void);
 #define DOT_GPIO_Port GPIOA
 #define LED_BLINK_Pin GPIO_PIN_5
 #define LED_BLINK_GPIO_Port GPIOA
-#define ENO_Pin GPIO_PIN_6
-#define ENO_GPIO_Port GPIOA
+#define EN0_Pin GPIO_PIN_6
+#define EN0_GPIO_Port GPIOA
 #define EN1_Pin GPIO_PIN_7
 #define EN1_GPIO_Port GPIOA
 #define GATE_A_Pin GPIO_PIN_0
