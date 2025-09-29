@@ -450,7 +450,7 @@ int main(void)
   	  }
   	  // display matrix 8x8 led
   	  if (timer4_flag == 1){
-  		  setTimer4(1);
+  		  setTimer4(10);
   		  updateLEDMatrix(index++);
   		if (index >= MAX_LED_MATRIX) {
   			index = 0;

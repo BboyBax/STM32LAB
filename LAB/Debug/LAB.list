@@ -1616,8 +1616,8 @@ int main(void)
  8000c5c:	681b      	ldr	r3, [r3, #0]
  8000c5e:	2b01      	cmp	r3, #1
  8000c60:	d186      	bne.n	8000b70 <main+0x70>
-  		  setTimer4(1);
- 8000c62:	2001      	movs	r0, #1
+  		  setTimer4(10);
+ 8000c62:	200a      	movs	r0, #10
  8000c64:	f000 f946 	bl	8000ef4 <setTimer4>
   		  updateLEDMatrix(index++);
  8000c68:	683b      	ldr	r3, [r7, #0]
