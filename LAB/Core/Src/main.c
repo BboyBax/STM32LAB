@@ -478,7 +478,7 @@ int main(void)
     		  updateLEDMatrix(index++);
     		if (index >= MAX_LED_MATRIX) {
     			index = 0;
-    			animation_top_move(matrix_buffer);
+    			animation_left_move(matrix_buffer);
     		}
     	  }
 
