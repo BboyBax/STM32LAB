@@ -20,12 +20,24 @@
 #define AMBER_RED 	4
 #define ERROR 		5
 
+#define MODE1 1
+#define MODE2 2
+#define MODE3 3
+#define MODE4 4
+
 void clear_all_led();
 void Red_Green();
 void Red_Amber();
 void Green_Red();
 void Amber_Red();
 void Error();
+
+void Red_Blink();
+
+void mode1();
+void mode2();
+void mode3();
+void mode4();
 
 void fsm_run();
 

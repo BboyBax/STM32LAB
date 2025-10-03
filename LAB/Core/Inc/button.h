@@ -12,10 +12,31 @@
 
 #define NORMAL_STATE SET
 #define PRESSED_STATE RESET
+#define NUM_BUTTONS 4
 
-extern int button1_flag;
-int isButton1Pressed();
+// STRUCT
+
+typedef struct {
+    int KeyReg0;
+    int KeyReg1;
+    int KeyReg2;
+    int KeyReg3;
+
+    int TimeOutForKeyPress;
+
+    int flag_pressed;
+    int flag_long_pressed;
+} Button_t;
+
+// API
+
+void Button_Init(void);
 void getKeyInput();
+
+int isButtonPressed(int index);
+int isButtonLongPressed(int index);
+
+
 
 
 #endif /* INC_BUTTON_H_ */

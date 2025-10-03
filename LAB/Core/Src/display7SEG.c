@@ -9,11 +9,13 @@
 
 
 int index_led = 0;
-int led_buffer[MAX_LED] = {1, 2};
+int led_buffer[MAX_LED] = {1, 2, 3, 4};
 
 void clear7SEG(){
 	HAL_GPIO_WritePin(EN0_GPIO_Port, EN0_Pin, SET);
 	HAL_GPIO_WritePin(EN1_GPIO_Port, EN1_Pin, SET);
+	HAL_GPIO_WritePin(EN2_GPIO_Port, EN2_Pin, SET);
+	HAL_GPIO_WritePin(EN3_GPIO_Port, EN3_Pin, SET);
 }
 
 void display7SEG(int number){
@@ -114,9 +116,11 @@ void display7SEG(int number){
 	return;
 }
 
-void update7SEG(int counter1, int counter2){
+void update7SEG(int counter1, int counter2, int counter3, int counter4){
 	led_buffer[0] = counter1;
 	led_buffer[1] = counter2;
+	led_buffer[2] = counter3;
+	led_buffer[3] = counter4;
 }
 
 void displayLED(){
@@ -124,12 +128,32 @@ void displayLED(){
 	case 0:
 		HAL_GPIO_WritePin(EN0_GPIO_Port, EN0_Pin, RESET);
 		HAL_GPIO_WritePin(EN1_GPIO_Port, EN1_Pin, SET);
+		HAL_GPIO_WritePin(EN2_GPIO_Port, EN2_Pin, SET);
+		HAL_GPIO_WritePin(EN3_GPIO_Port, EN3_Pin, SET);
 		display7SEG(led_buffer[index_led]);
-		index_led = 1;
+		index_led++;
 		break;
 	case 1:
 		HAL_GPIO_WritePin(EN0_GPIO_Port, EN0_Pin, SET);
 		HAL_GPIO_WritePin(EN1_GPIO_Port, EN1_Pin, RESET);
+		HAL_GPIO_WritePin(EN2_GPIO_Port, EN2_Pin, SET);
+		HAL_GPIO_WritePin(EN3_GPIO_Port, EN3_Pin, SET);
+		display7SEG(led_buffer[index_led]);
+		index_led++;
+		break;
+	case 2:
+		HAL_GPIO_WritePin(EN0_GPIO_Port, EN0_Pin, SET);
+		HAL_GPIO_WritePin(EN1_GPIO_Port, EN1_Pin, SET);
+		HAL_GPIO_WritePin(EN2_GPIO_Port, EN2_Pin, RESET);
+		HAL_GPIO_WritePin(EN3_GPIO_Port, EN3_Pin, SET);
+		display7SEG(led_buffer[index_led]);
+		index_led++;
+		break;
+	case 3:
+		HAL_GPIO_WritePin(EN0_GPIO_Port, EN0_Pin, SET);
+		HAL_GPIO_WritePin(EN1_GPIO_Port, EN1_Pin, SET);
+		HAL_GPIO_WritePin(EN2_GPIO_Port, EN2_Pin, SET);
+		HAL_GPIO_WritePin(EN3_GPIO_Port, EN3_Pin, RESET);
 		display7SEG(led_buffer[index_led]);
 		index_led = 0;
 		break;
