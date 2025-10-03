@@ -1,0 +1,4 @@
+display7SEG.c:14:6:clear7SEG	8	static
+display7SEG.c:19:6:display7SEG	16	static
+display7SEG.c:117:6:update7SEG	16	static
+display7SEG.c:122:6:displayLED	8	static

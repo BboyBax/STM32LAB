@@ -58,6 +58,40 @@ void Error_Handler(void);
 /* USER CODE END EFP */
 
 /* Private defines -----------------------------------------------------------*/
+#define BUTTON1_Pin GPIO_PIN_1
+#define BUTTON1_GPIO_Port GPIOA
+#define LED_BLINK_Pin GPIO_PIN_5
+#define LED_BLINK_GPIO_Port GPIOA
+#define EN0_Pin GPIO_PIN_6
+#define EN0_GPIO_Port GPIOA
+#define EN1_Pin GPIO_PIN_7
+#define EN1_GPIO_Port GPIOA
+#define GATE_A_Pin GPIO_PIN_0
+#define GATE_A_GPIO_Port GPIOB
+#define GATE_B_Pin GPIO_PIN_1
+#define GATE_B_GPIO_Port GPIOB
+#define GATE_C_Pin GPIO_PIN_2
+#define GATE_C_GPIO_Port GPIOB
+#define GREEN1_Pin GPIO_PIN_8
+#define GREEN1_GPIO_Port GPIOA
+#define AMBER1_Pin GPIO_PIN_9
+#define AMBER1_GPIO_Port GPIOA
+#define RED1_Pin GPIO_PIN_10
+#define RED1_GPIO_Port GPIOA
+#define GREEN2_Pin GPIO_PIN_11
+#define GREEN2_GPIO_Port GPIOA
+#define AMBER2_Pin GPIO_PIN_12
+#define AMBER2_GPIO_Port GPIOA
+#define RED2_Pin GPIO_PIN_13
+#define RED2_GPIO_Port GPIOA
+#define GATE_D_Pin GPIO_PIN_3
+#define GATE_D_GPIO_Port GPIOB
+#define GATE_E_Pin GPIO_PIN_4
+#define GATE_E_GPIO_Port GPIOB
+#define GATE_F_Pin GPIO_PIN_5
+#define GATE_F_GPIO_Port GPIOB
+#define GATE_G_Pin GPIO_PIN_6
+#define GATE_G_GPIO_Port GPIOB
 /* USER CODE BEGIN Private defines */
 
 /* USER CODE END Private defines */

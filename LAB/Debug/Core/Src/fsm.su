@@ -1,0 +1,7 @@
+fsm.c:13:6:clear_all_led	8	static
+fsm.c:23:6:Red_Green	8	static
+fsm.c:32:6:Red_Amber	8	static
+fsm.c:43:6:Green_Red	8	static
+fsm.c:52:6:Amber_Red	8	static
+fsm.c:62:6:Error	8	static
+fsm.c:86:6:fsm_run	8	static
