@@ -106,10 +106,17 @@ int state = 0;
 int mode = 0;
 int counter1 = 0;
 int counter2 = 0;
+int counter = 97;
 int value1 = 0;
 int value2 = 0;
 int mode_state = 0;
+int red_counter = 0;
 
+
+void update_value(int num){
+	value1 = num / 10;
+	value2 = num % 10;
+}
 
 void mode1(){
 	switch (state){
@@ -132,6 +139,14 @@ void mode1(){
 			}
 		break;
 		case RED_GREEN:
+			if (isButtonPressed(0) == 1){
+				mode = MODE2;
+				setButtonFlag(0);
+				setTimer(0, 1);
+				setTimer(1, 5);
+				setTimer(18, 10);
+				break;
+			}
 			Red_Green();
 			if (isTimerExpired(18) == 1){
 				displayLED();
@@ -151,6 +166,14 @@ void mode1(){
 			}
 		break;
 		case RED_AMBER:
+			if (isButtonPressed(0) == 1){
+				mode = MODE2;
+				setButtonFlag(0);
+				setTimer(0, 1);
+				setTimer(1, 5);
+				setTimer(18, 10);
+				break;
+			}
 			Red_Amber();
 			if (isTimerExpired(18) == 1){
 				displayLED();
@@ -170,6 +193,14 @@ void mode1(){
 			}
 		break;
 		case GREEN_RED:
+			if (isButtonPressed(0) == 1){
+				mode = MODE2;
+				setButtonFlag(0);
+				setTimer(0, 1);
+				setTimer(1, 5);
+				setTimer(18, 10);
+				break;
+			}
 			Green_Red();
 			if (isTimerExpired(18) == 1){
 				displayLED();
@@ -189,6 +220,14 @@ void mode1(){
 			}
 			break;
 		case AMBER_RED:
+			if (isButtonPressed(0) == 1){
+				mode = MODE2;
+				setButtonFlag(0);
+				setTimer(0, 1);
+				setTimer(1, 5);
+				setTimer(18, 10);
+				break;
+			}
 			Amber_Red();
 			if (isTimerExpired(18) == 1){
 				displayLED();
@@ -206,6 +245,7 @@ void mode1(){
 				counter2 = 5;
 				setTimer(0, 500);
 			}
+
 		break;
 		default:
 		break;
@@ -226,17 +266,6 @@ void mode2(){
 		displayLED();
 		setTimer(18, 10);
 	}
-	if (isButton1Pressed() == 1){
-		mode = MODE3;
-		button1_flag = 0;
-		setTimer(0, 1);
-		setTimer(1, 5);
-		setTimer(18, 10);
-		break;
-	}
-	if (isButton1Pressed() == 1){
-
-	}
 }
 
 void mode3(){
@@ -251,7 +280,7 @@ void fsm_run(){
 		setTimer(19, 50);
 		HAL_GPIO_TogglePin(LED_BLINK_GPIO_Port, LED_BLINK_Pin);
 	}
-	button1_flag = 0;
+	setButtonFlag(0);
 	switch (mode) {
 	case INIT:
 		update7SEG(0, 0, 0, 0);
@@ -259,9 +288,9 @@ void fsm_run(){
 			displayLED();
 			setTimer(18, 10);
 		}
-		if (isButton1Pressed() == 1){
+		if (isButtonPressed(0) == 1){
 			mode = MODE1;
-			button1_flag = 0;
+			setButtonFlag(0);
 			setTimer(0, 1);
 			setTimer(1, 5);
 			break;
@@ -269,9 +298,11 @@ void fsm_run(){
 		break;
 	case MODE1:
 		mode1();
-		if (isButton1Pressed() == 1){
+		if (isButtonPressed(0) == 1){
 			mode = MODE2;
-			button1_flag = 0;
+			setButtonFlag(0);
+			setButtonFlag(1);
+			setButtonFlag(2);
 			setTimer(0, 1);
 			setTimer(1, 5);
 			setTimer(18, 10);
@@ -280,6 +311,27 @@ void fsm_run(){
 		break;
 	case MODE2:
 		mode2();
+		if (isButtonPressed(0) == 1){
+			mode = MODE3;
+			setButtonFlag(0);
+			setTimer(0, 1);
+			setTimer(1, 5);
+			setTimer(18, 10);
+			break;
+		}
+		if (isButtonPressed(1) == 1){
+			counter++;
+			if (counter > 99) {
+				counter = 0;
+			}
+			update_value(counter);
+			update7SEG(0, 2, value1, value2);
+			setButtonFlag(1);
+		}
+		if (isButtonPressed(2) == 1){
+			red_counter = counter;
+			setButtonFlag(2);
+		}
 		break;
 	case MODE3:
 		mode3();

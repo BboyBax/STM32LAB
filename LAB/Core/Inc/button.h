@@ -30,9 +30,11 @@ typedef struct {
 
 // API
 
-void Button_Init(void);
+void Button_Init();
 void getKeyInput();
 
+void subKeyProcess(int index);
+void setButtonFlag(int index);
 int isButtonPressed(int index);
 int isButtonLongPressed(int index);
 
