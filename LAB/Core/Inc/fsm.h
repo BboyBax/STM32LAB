@@ -33,6 +33,8 @@ void Amber_Red();
 void Error();
 
 void Red_Blink();
+void Amber_Blink();
+void Green_Blink();
 void update_value(int num);
 
 void mode1();
