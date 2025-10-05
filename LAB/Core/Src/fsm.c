@@ -157,9 +157,9 @@ int counter = 0;
 int value1 = 0;
 int value2 = 0;
 
-int red_counter = 0;
-int amber_counter = 0;
-int green_counter = 0;
+int red_counter = 7;
+int amber_counter = 2;
+int green_counter = 5;
 
 void update_value(int num){
 	value1 = num / 10;
@@ -171,10 +171,11 @@ void mode1(){
 		case INIT:
 			clear_all_led();
 			clear7SEG();
+			amber_counter = red_counter - green_counter;
 			if (isTimerExpired(0) == 1){
 				state = RED_GREEN;
-				counter1 = 7;
-				counter2 = 5;
+				counter1 = red_counter;
+				counter2 = green_counter;
 				setTimer(0, 500);
 			}
 			if (isTimerExpired(1) == 1){
@@ -208,8 +209,8 @@ void mode1(){
 			}
 			if (isTimerExpired(0) == 1){
 				state = RED_AMBER;
-				counter1 = 2;
-				counter2 = 2;
+				counter1 = amber_counter;
+				counter2 = amber_counter;
 				setTimer(0, 200);
 			}
 		break;
@@ -235,8 +236,8 @@ void mode1(){
 			}
 			if (isTimerExpired(0) == 1){
 				state = GREEN_RED;
-				counter1 = 5;
-				counter2 = 7;
+				counter1 = green_counter;
+				counter2 = red_counter;
 				setTimer(0, 500);
 			}
 		break;
@@ -262,8 +263,8 @@ void mode1(){
 			}
 			if (isTimerExpired(0) == 1){
 				state = AMBER_RED;
-				counter1 = 2;
-				counter2 = 2;
+				counter1 = amber_counter;
+				counter2 = amber_counter;
 				setTimer(0, 200);
 			}
 			break;
@@ -289,8 +290,8 @@ void mode1(){
 			}
 			if (isTimerExpired(0) == 1){
 				state = RED_GREEN;
-				counter1 = 7;
-				counter2 = 5;
+				counter1 = red_counter;
+				counter2 = green_counter;
 				setTimer(0, 500);
 			}
 
@@ -429,7 +430,9 @@ void fsm_run(){
 			setButtonFlag(1);
 		}
 		if (isButtonPressed(2) == 1){
-			amber_counter = counter;
+			if (counter < red_counter) {
+				amber_counter = counter;
+			}
 			setButtonFlag(2);
 		}
 		break;
@@ -456,7 +459,9 @@ void fsm_run(){
 			setButtonFlag(1);
 		}
 		if (isButtonPressed(2) == 1){
-			green_counter = counter;
+			if (counter < red_counter && counter > amber_counter) {
+				green_counter = counter;
+			}
 			setButtonFlag(2);
 		}
 		break;
