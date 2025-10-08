@@ -203,13 +203,20 @@ static void MX_GPIO_Init(void)
   __HAL_RCC_GPIOB_CLK_ENABLE();
 
   /*Configure GPIO pin Output Level */
-  HAL_GPIO_WritePin(GPIOA, EN0_Pin|EN1_Pin|LED_BLINK_Pin|EN2_Pin
-                          |EN3_Pin|GREEN1_Pin|AMBER1_Pin|RED1_Pin
-                          |GREEN2_Pin|AMBER2_Pin|RED2_Pin, GPIO_PIN_RESET);
+  HAL_GPIO_WritePin(GPIOA, WHITE_Pin|EN0_Pin|EN1_Pin|LED_BLINK_Pin
+                          |EN2_Pin|EN3_Pin|GREEN1_Pin|AMBER1_Pin
+                          |RED1_Pin|GREEN2_Pin|AMBER2_Pin|RED2_Pin, GPIO_PIN_RESET);
 
   /*Configure GPIO pin Output Level */
   HAL_GPIO_WritePin(GPIOB, GATE_A_Pin|GATE_B_Pin|GATE_C_Pin|GATE_D_Pin
                           |GATE_E_Pin|GATE_F_Pin|GATE_G_Pin, GPIO_PIN_RESET);
+
+  /*Configure GPIO pin : WHITE_Pin */
+  GPIO_InitStruct.Pin = WHITE_Pin;
+  GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
+  GPIO_InitStruct.Pull = GPIO_PULLUP;
+  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+  HAL_GPIO_Init(WHITE_GPIO_Port, &GPIO_InitStruct);
 
   /*Configure GPIO pins : EN0_Pin EN1_Pin LED_BLINK_Pin EN2_Pin
                            EN3_Pin GREEN1_Pin AMBER1_Pin RED1_Pin

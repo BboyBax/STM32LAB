@@ -8,8 +8,8 @@ fsm.c:86:6:Red_Blink	8	static
 fsm.c:107:6:Amber_Blink	8	static
 fsm.c:128:6:Green_Blink	8	static
 fsm.c:164:6:update_value	16	static
-fsm.c:169:6:mode1	8	static
-fsm.c:304:6:mode2	8	static
-fsm.c:319:6:mode3	8	static
-fsm.c:334:6:mode4	8	static
-fsm.c:348:6:fsm_run	8	static
+fsm.c:169:6:mode1	16	static
+fsm.c:305:6:mode2	8	static
+fsm.c:320:6:mode3	8	static
+fsm.c:335:6:mode4	8	static
+fsm.c:349:6:fsm_run	8	static
