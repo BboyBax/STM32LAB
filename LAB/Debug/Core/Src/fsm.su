@@ -7,9 +7,10 @@ fsm.c:65:6:Error	8	static
 fsm.c:86:6:Red_Blink	8	static
 fsm.c:107:6:Amber_Blink	8	static
 fsm.c:128:6:Green_Blink	8	static
-fsm.c:164:6:update_value	16	static
-fsm.c:169:6:mode1	16	static
-fsm.c:305:6:mode2	8	static
-fsm.c:320:6:mode3	8	static
-fsm.c:335:6:mode4	8	static
-fsm.c:349:6:fsm_run	8	static
+fsm.c:167:6:check_value	24	static
+fsm.c:174:6:update_value	16	static
+fsm.c:179:6:mode1	16	static
+fsm.c:315:6:mode2	8	static
+fsm.c:330:6:mode3	8	static
+fsm.c:345:6:mode4	8	static
+fsm.c:359:6:fsm_run	8	static

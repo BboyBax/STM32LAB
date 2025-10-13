@@ -157,9 +157,19 @@ int counter = 0;
 int value1 = 0;
 int value2 = 0;
 
+int buffer_value[3] = {7, 2, 5};
+
 int red_counter = 7;
 int amber_counter = 2;
 int green_counter = 5;
+
+
+bool check_value(int red, int amber, int green){
+	if (green + amber == red) {
+		return true;
+	}
+	return false;
+}
 
 void update_value(int num){
 	value1 = num / 10;
@@ -369,6 +379,11 @@ void fsm_run(){
 		}
 		break;
 	case MODE1:
+		if (check_value(buffer_value[0], buffer_value[1], buffer_value[2])) {
+			red_counter = buffer_value[0];
+			amber_counter = buffer_value[1];
+			green_counter = buffer_value[2];
+		}
 		mode1();
 		if (isButtonPressed(0) == 1){
 			mode = MODE2;
@@ -404,7 +419,7 @@ void fsm_run(){
 			setButtonFlag(1);
 		}
 		if (isButtonPressed(2) == 1){
-			red_counter = counter;
+			buffer_value[0] = counter;
 			HAL_GPIO_WritePin(WHITE_GPIO_Port, WHITE_Pin, RESET);
 			setButtonFlag(2);
 		}
@@ -432,9 +447,7 @@ void fsm_run(){
 			setButtonFlag(1);
 		}
 		if (isButtonPressed(2) == 1){
-			if (counter < red_counter) {
-				amber_counter = counter;
-			}
+			buffer_value[1] = counter;
 			HAL_GPIO_WritePin(WHITE_GPIO_Port, WHITE_Pin, RESET);
 			setButtonFlag(2);
 		}
@@ -462,9 +475,7 @@ void fsm_run(){
 			setButtonFlag(1);
 		}
 		if (isButtonPressed(2) == 1){
-			if (counter < red_counter && counter > amber_counter) {
-				green_counter = counter;
-			}
+			buffer_value[2] = counter;
 			HAL_GPIO_WritePin(WHITE_GPIO_Port, WHITE_Pin, RESET);
 			setButtonFlag(2);
 		}
