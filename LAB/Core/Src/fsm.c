@@ -181,12 +181,11 @@ void mode1(){
 		case INIT:
 			clear_all_led();
 			clear7SEG();
-			amber_counter = red_counter - green_counter;
 			if (isTimerExpired(0) == 1){
 				state = RED_GREEN;
 				counter1 = red_counter;
 				counter2 = green_counter;
-				setTimer(0, 500);
+				setTimer(0, green_counter * 100);
 			}
 			if (isTimerExpired(1) == 1){
 				update7SEG(counter1 / 10, counter1 % 10, counter2 / 10, counter2 % 10);
@@ -194,7 +193,7 @@ void mode1(){
 			}
 			if (isTimerExpired(18) == 1){
 				displayLED();
-				setTimer(18, 25);
+				setTimer(18, 10);
 			}
 		break;
 		case RED_GREEN:
@@ -203,13 +202,13 @@ void mode1(){
 				setButtonFlag(0);
 				setTimer(0, 1);
 				setTimer(1, 5);
-				setTimer(18, 25);
+				setTimer(18, 10);
 				break;
 			}
 			Red_Green();
 			if (isTimerExpired(18) == 1){
 				displayLED();
-				setTimer(18, 25);
+				setTimer(18, 10);
 			}
 			if (isTimerExpired(1) == 1){
 				counter1--;
@@ -221,7 +220,7 @@ void mode1(){
 				state = RED_AMBER;
 				counter1 = amber_counter;
 				counter2 = amber_counter;
-				setTimer(0, 200);
+				setTimer(0, amber_counter * 100);
 			}
 		break;
 		case RED_AMBER:
@@ -230,13 +229,13 @@ void mode1(){
 				setButtonFlag(0);
 				setTimer(0, 1);
 				setTimer(1, 5);
-				setTimer(18, 25);
+				setTimer(18, 10);
 				break;
 			}
 			Red_Amber();
 			if (isTimerExpired(18) == 1){
 				displayLED();
-				setTimer(18, 25);
+				setTimer(18, 10);
 			}
 			if (isTimerExpired(1) == 1){
 				counter1--;
@@ -248,7 +247,7 @@ void mode1(){
 				state = GREEN_RED;
 				counter1 = green_counter;
 				counter2 = red_counter;
-				setTimer(0, 500);
+				setTimer(0, green_counter * 100);
 			}
 		break;
 		case GREEN_RED:
@@ -257,13 +256,13 @@ void mode1(){
 				setButtonFlag(0);
 				setTimer(0, 1);
 				setTimer(1, 5);
-				setTimer(18, 25);
+				setTimer(18, 10);
 				break;
 			}
 			Green_Red();
 			if (isTimerExpired(18) == 1){
 				displayLED();
-				setTimer(18, 25);
+				setTimer(18, 10);
 			}
 			if (isTimerExpired(1) == 1){
 				counter1--;
@@ -275,7 +274,7 @@ void mode1(){
 				state = AMBER_RED;
 				counter1 = amber_counter;
 				counter2 = amber_counter;
-				setTimer(0, 200);
+				setTimer(0, amber_counter * 100);
 			}
 			break;
 		case AMBER_RED:
@@ -284,13 +283,13 @@ void mode1(){
 				setButtonFlag(0);
 				setTimer(0, 1);
 				setTimer(1, 5);
-				setTimer(18, 25);
+				setTimer(18, 10);
 				break;
 			}
 			Amber_Red();
 			if (isTimerExpired(18) == 1){
 				displayLED();
-				setTimer(18, 25);
+				setTimer(18, 10);
 			}
 			if (isTimerExpired(1) == 1){
 				counter1--;
@@ -302,7 +301,7 @@ void mode1(){
 				state = RED_GREEN;
 				counter1 = red_counter;
 				counter2 = green_counter;
-				setTimer(0, 500);
+				setTimer(0, green_counter * 100);
 			}
 
 		break;
@@ -420,7 +419,6 @@ void fsm_run(){
 		}
 		if (isButtonPressed(2) == 1){
 			buffer_value[0] = counter;
-			HAL_GPIO_WritePin(WHITE_GPIO_Port, WHITE_Pin, RESET);
 			setButtonFlag(2);
 		}
 		break;
@@ -448,7 +446,6 @@ void fsm_run(){
 		}
 		if (isButtonPressed(2) == 1){
 			buffer_value[1] = counter;
-			HAL_GPIO_WritePin(WHITE_GPIO_Port, WHITE_Pin, RESET);
 			setButtonFlag(2);
 		}
 		break;
@@ -459,7 +456,7 @@ void fsm_run(){
 			setButtonFlag(0);
 			setTimer(0, 1);
 			setTimer(1, 5);
-			setTimer(18, 25);
+			setTimer(18, 10);
 			value1 = 0;
 			value2 = 0;
 			counter = 0;
@@ -476,7 +473,6 @@ void fsm_run(){
 		}
 		if (isButtonPressed(2) == 1){
 			buffer_value[2] = counter;
-			HAL_GPIO_WritePin(WHITE_GPIO_Port, WHITE_Pin, RESET);
 			setButtonFlag(2);
 		}
 		break;

@@ -98,7 +98,7 @@ Button_Init();
   /* USER CODE BEGIN WHILE */
   // hello world
   setTimer(19, 1);
-  setTimer(18, 100);
+  setTimer(18, 10);
   while (1)
   {
 	  fsm_run();

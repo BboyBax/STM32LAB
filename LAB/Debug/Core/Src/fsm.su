@@ -10,7 +10,7 @@ fsm.c:128:6:Green_Blink	8	static
 fsm.c:167:6:check_value	24	static
 fsm.c:174:6:update_value	16	static
 fsm.c:179:6:mode1	16	static
-fsm.c:315:6:mode2	8	static
-fsm.c:330:6:mode3	8	static
-fsm.c:345:6:mode4	8	static
-fsm.c:359:6:fsm_run	8	static
+fsm.c:314:6:mode2	8	static
+fsm.c:329:6:mode3	8	static
+fsm.c:344:6:mode4	8	static
+fsm.c:358:6:fsm_run	8	static
