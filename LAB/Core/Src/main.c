@@ -68,6 +68,9 @@ void setTimer18_10(void) {
     setTimer(18, 10);
 }
 
+void setButtonFlag0(void){
+	setButtonFlag(0);
+}
 /* USER CODE END 0 */
 
 /**
@@ -108,9 +111,10 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   SCH_Add_Task(timerRun, 0, 1);
   SCH_Add_Task(getKeyInput, 1, 1);
-  SCH_Add_Task(fsm_run, 2, 2);
+  SCH_Add_Task(fsm_run, 5, 2);
   SCH_Add_Task(setTimer19_1, 0, 0);
   SCH_Add_Task(setTimer18_10, 0, 0);
+  SCH_Add_Task(setButtonFlag0, 1, 0);
 
   while (1)
   {

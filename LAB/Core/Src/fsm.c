@@ -372,14 +372,19 @@ void fsm_run(){
 		}
 		  if (isButtonPressed(0)) {
 		      HAL_GPIO_TogglePin(TEST_LED_GPIO_Port, TEST_LED_Pin);
+				mode = MODE1;
+				setButtonFlag(0);
+				setTimer(0, 1);
+				setTimer(1, 5);
+				break;
 		  }
-		if (isButtonPressed(0)){
-			mode = MODE1;
-			setButtonFlag(0);
-			setTimer(0, 1);
-			setTimer(1, 5);
-			break;
-		}
+//		if (isButtonPressed(0)){
+//			mode = MODE1;
+//			setButtonFlag(0);
+//			setTimer(0, 1);
+//			setTimer(1, 5);
+//			break;
+//		}
 		break;
 	case MODE1:
 		if (check_value(buffer_value[0], buffer_value[1], buffer_value[2])) {
