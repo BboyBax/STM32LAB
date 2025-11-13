@@ -362,7 +362,6 @@ void fsm_run(){
 		HAL_GPIO_TogglePin(LED_BLINK_GPIO_Port, LED_BLINK_Pin);
 	}
 	setButtonFlag(0);
-	HAL_GPIO_WritePin(WHITE_GPIO_Port, WHITE_Pin, SET);
 	switch (mode) {
 	case INIT:
 		update7SEG(0, 0, 0, 0);
