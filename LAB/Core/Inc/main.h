@@ -29,10 +29,10 @@ extern "C" {
 
 /* Includes ------------------------------------------------------------------*/
 #include "stm32f1xx_hal.h"
-#include <stdbool.h>
+
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-
+#include "stdbool.h"
 /* USER CODE END Includes */
 
 /* Exported types ------------------------------------------------------------*/
@@ -100,6 +100,8 @@ void Error_Handler(void);
 #define GATE_F_GPIO_Port GPIOB
 #define GATE_G_Pin GPIO_PIN_6
 #define GATE_G_GPIO_Port GPIOB
+#define TEST_LED_Pin GPIO_PIN_7
+#define TEST_LED_GPIO_Port GPIOB
 /* USER CODE BEGIN Private defines */
 
 /* USER CODE END Private defines */

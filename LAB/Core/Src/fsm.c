@@ -361,7 +361,8 @@ void fsm_run(){
 		setTimer(19, 50);
 		HAL_GPIO_TogglePin(LED_BLINK_GPIO_Port, LED_BLINK_Pin);
 	}
-	setButtonFlag(0);
+//	setButtonFlag(0);
+
 	switch (mode) {
 	case INIT:
 		update7SEG(0, 0, 0, 0);
@@ -369,7 +370,10 @@ void fsm_run(){
 			displayLED();
 			setTimer(18, 25);
 		}
-		if (isButtonPressed(0) == 1){
+		  if (isButtonPressed(0)) {
+		      HAL_GPIO_TogglePin(TEST_LED_GPIO_Port, TEST_LED_Pin);
+		  }
+		if (isButtonPressed(0)){
 			mode = MODE1;
 			setButtonFlag(0);
 			setTimer(0, 1);

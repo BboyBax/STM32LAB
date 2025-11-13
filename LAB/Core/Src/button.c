@@ -116,7 +116,7 @@ void Button_Init(){
 		buttons[i].KeyReg1 = NORMAL_STATE;
 		buttons[i].KeyReg2 = NORMAL_STATE;
 		buttons[i].KeyReg3 = NORMAL_STATE;
-		buttons[i].TimeOutForKeyPress = 500;
+		buttons[i].TimeOutForKeyPress = 50;
 		buttons[i].flag_pressed = 0;
 		buttons[i].flag_long_pressed = 0;
 	}
@@ -158,14 +158,14 @@ void getKeyInput(){
 				buttons[i].KeyReg3 = buttons[i].KeyReg2;
 
 				if (buttons[i].KeyReg3 == PRESSED_STATE){
-					buttons[i].TimeOutForKeyPress = 500;
+					buttons[i].TimeOutForKeyPress = 50;
 					buttons[i].flag_pressed = 1;
 				}
 			}
 			else {
 				buttons[i].TimeOutForKeyPress--;
 				if (buttons[i].TimeOutForKeyPress == 0){
-					buttons[i].TimeOutForKeyPress = 500;
+					buttons[i].TimeOutForKeyPress = 50;
 					if (buttons[i].KeyReg3 == PRESSED_STATE){
 						buttons[i].flag_pressed = 1;
 					}

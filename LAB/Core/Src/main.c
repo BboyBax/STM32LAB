@@ -106,11 +106,12 @@ int main(void)
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
-  SCH_Add_Task(timerRun, 2, 1);
-  SCH_Add_Task(getKeyInput, 3, 1);
-  SCH_Add_Task(setTimer19_1, 5, 0);
-  SCH_Add_Task(setTimer18_10, 5, 0);
-  SCH_Add_Task(fsm_run, 7, 1);
+  SCH_Add_Task(timerRun, 0, 1);
+  SCH_Add_Task(getKeyInput, 1, 1);
+  SCH_Add_Task(fsm_run, 2, 2);
+  SCH_Add_Task(setTimer19_1, 0, 0);
+  SCH_Add_Task(setTimer18_10, 0, 0);
+
   while (1)
   {
 	  SCH_Dispatch_Tasks();
@@ -221,7 +222,7 @@ static void MX_GPIO_Init(void)
 
   /*Configure GPIO pin Output Level */
   HAL_GPIO_WritePin(GPIOB, GATE_A_Pin|GATE_B_Pin|GATE_C_Pin|GATE_D_Pin
-                          |GATE_E_Pin|GATE_F_Pin|GATE_G_Pin, GPIO_PIN_RESET);
+                          |GATE_E_Pin|GATE_F_Pin|GATE_G_Pin|TEST_LED_Pin, GPIO_PIN_RESET);
 
   /*Configure GPIO pins : EN0_Pin EN1_Pin LED_BLINK_Pin EN2_Pin
                            EN3_Pin GREEN1_Pin AMBER1_Pin RED1_Pin
@@ -235,9 +236,9 @@ static void MX_GPIO_Init(void)
   HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
 
   /*Configure GPIO pins : GATE_A_Pin GATE_B_Pin GATE_C_Pin GATE_D_Pin
-                           GATE_E_Pin GATE_F_Pin GATE_G_Pin */
+                           GATE_E_Pin GATE_F_Pin GATE_G_Pin TEST_LED_Pin */
   GPIO_InitStruct.Pin = GATE_A_Pin|GATE_B_Pin|GATE_C_Pin|GATE_D_Pin
-                          |GATE_E_Pin|GATE_F_Pin|GATE_G_Pin;
+                          |GATE_E_Pin|GATE_F_Pin|GATE_G_Pin|TEST_LED_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
@@ -254,6 +255,7 @@ static void MX_GPIO_Init(void)
 /* USER CODE BEGIN 4 */
 void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim){
 	SCH_Update();
+//	getKeyInput();
 }
 /* USER CODE END 4 */
 
