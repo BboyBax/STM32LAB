@@ -63,7 +63,7 @@ void SCH_Update(void){
 }
 
 uint32_t SCH_Add_Task(void (*p_function)(), uint32_t DELAY, uint32_t PERIOD) {
-    uint32_t sum_delay = 0;
+//    uint32_t sum_delay = 0;
     unsigned char index = 0;
 
     while ((index < SCH_MAX_TASKS) && (SCH_tasks_G[index].pTask != 0)) {
@@ -77,7 +77,7 @@ uint32_t SCH_Add_Task(void (*p_function)(), uint32_t DELAY, uint32_t PERIOD) {
 
     for (index = 0; index < SCH_MAX_TASKS; index++) {
         uint32_t temp_delay = SCH_tasks_G[index].Delay;
-        sum_delay += temp_delay;
+//        sum_delay += temp_delay;
         if (DELAY < temp_delay) {
             SCH_tasks_G[index].Delay -= DELAY;
             shift_right(SCH_tasks_G, index);
